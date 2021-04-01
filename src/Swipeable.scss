@@ -1,6 +1,6 @@
-@import './normalize.css';
 
 .swipeable {
+  all: none;
   font-family: sans-serif;
   border: 2px solid black;
   width: 500px;
@@ -9,6 +9,29 @@
   height: 100px;
   background-color: black;
   display: flex;
+  box-shadow: 0 9px 35px -15px rgba(0, 0, 0, 0.8);
+  font-weight: bold;
+
+  .home.target {
+    border: 2px solid red;
+    visibility: hidden;
+    position: static;
+    left: 0;
+  }
+
+
+  .swiper {
+    position: relative;
+    transition: left 0.1s;
+    cursor: pointer;
+  }
+  .fall {
+    transition: left 0.5s;
+  }
+
+  .wiggle {
+    animation: wiggle 1s infinite;
+  }
 
   .target, .swiper {
     flex: 1;
@@ -22,10 +45,15 @@
     padding: auto;
     width: 20px;
     color: white;
-
   }
 
-  .swiper {
-    position: relative;
-  }
+}
+
+
+@keyframes wiggle {
+  0% { transform: rotate(0deg); }
+ 80% { transform: rotate(0deg); }
+ 85% { transform: rotate(5deg); }
+ 95% { transform: rotate(-5deg); }
+100% { transform: rotate(0deg); }
 }
