@@ -7,6 +7,12 @@ import 'jquery-ui/ui/core';
 import 'jquery-ui/ui/widgets/draggable';
 import './Swipeable.scss';
 
+// TODO: Typescript compatibility
+// TODO: Classnames shouldn't conflict
+// you can stuff whatever info, as long as you have 'onDragEnd' to specify
+//  a cb to run after dragging end
+// remove jquery reliance
+
 // color
 // width of targets and selector
 // border radius
@@ -21,25 +27,25 @@ import './Swipeable.scss';
 const example = [
   {
     content: 'A',
-    stop: function () {
+    onDragEnd: function () {
       console.log(this.content);
     },
   },
   {
     content: 'B',
-    stop: function () {
+    onDragEnd: function () {
       console.log(this.content);
     },
   },
   {
     content: 'C',
-    stop: function () {
+    onDragEnd: function () {
       console.log(this.content);
     },
   },
   {
     content: 'D',
-    stop: function () {
+    onDragEnd: function () {
       console.log(this.content);
     },
   },
@@ -47,7 +53,6 @@ const example = [
 
 const Swipeable = ({ width = 500, elements = example }) => {
   const approxTargetWidth = Math.floor(width / elements.length + 1);
-  const approxElLocations = [];
 
   useEffect(() => {
     $('.swiper').draggable({
@@ -60,9 +65,10 @@ const Swipeable = ({ width = 500, elements = example }) => {
         console.log(stats);
         const i = Math.floor(stats.position.left / approxTargetWidth);
         if (i > 0) {
-          console.log(elements[i].stop.bind(elements[i])());
+          elements[i].onDragEnd()
         }
         $('.swiper').addClass('fall');
+        $('.swipeable').addClass('wiggle');
         setTimeout(() => {
           $('.swiper').css('left', 0);
           setTimeout(() => {
