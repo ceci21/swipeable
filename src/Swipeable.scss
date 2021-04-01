@@ -1,0 +1,31 @@
+@import './normalize.css';
+
+.swipeable {
+  font-family: sans-serif;
+  border: 2px solid black;
+  width: 500px;
+  border-radius: 9999px;
+  padding: 5px;
+  height: 100px;
+  background-color: black;
+  display: flex;
+
+  .target, .swiper {
+    flex: 1;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .target {
+    padding: auto;
+    width: 20px;
+    color: white;
+
+  }
+
+  .swiper {
+    position: relative;
+  }
+}
